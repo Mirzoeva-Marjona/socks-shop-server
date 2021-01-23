@@ -1,8 +1,9 @@
-const {saveProduct, readProductFile, getInput} = require('./file');
+const {add, get, remove, edit, getAll} = require('./model/product.repository');
+const  {getInput} = require('./util/console.utils');
 
 async function firstItem() {
-    let content = readProductFile();
-    content.forEach(element => console.log(`ID товара: ${element.id}, 
+    let products = getAll();
+    products.forEach(element => console.log(`ID товара: ${element.id}, 
             Название товара: ${element.name},
             Цена: ${element.price},
             Ссылка на картинку: ${element.img}`));
@@ -22,72 +23,53 @@ async function secondItem() {
     answer = await getInput();
     const productPrice = answer;
 
-    let content = readProductFile();
-    const productId = content[content.length - 1].id + 1;
-
     const newProduct = {
-        id: productId,
         img: productImg,
         name: productName,
         price: productPrice,
     }
-    content.push(newProduct);
-    saveProduct(content);
+
+    add(newProduct);
 }
 
 async function thirdItem() {
-    let content = readProductFile();
     console.log("Введите id товара, который хотите изменить");
     let answer = await getInput();
     const changeProduct = answer;
-    let findIndex = -1;
-    content.forEach((value, index) => {
-        if (value.id == changeProduct) {
-            findIndex = index;
-        }
-    });
-    if (findIndex == -1) {
-        console.log("Товар с данным id не найден");
-    } else {
-        let product = content[findIndex];
+    if (get(answer)) {
+        let product = get(answer);
+
         console.log(`Введите новое название товара (${product.name})`);
         answer = await getInput();
         if (answer != '') {
-            content[findIndex].name = answer;
+            product.name = answer;
         }
 
         console.log(`Введите новую ссылку на картинку товара (${product.img})`);
         answer = await getInput();
         if (answer != '') {
-            content[findIndex].img = answer;
+            product.img = answer;
         }
 
         console.log(`Введите новую цену товара (${product.price})`);
         answer = await getInput();
         if (answer != '') {
-            content[findIndex].price = answer;
+            product.price = answer;
         }
-        saveProduct(content);
-        console.log(content[findIndex]);
+        edit(product);
+        console.log(product);
+    } else {
+        console.log("Товар с данным id не найден");
     }
 }
 
 async function fourthItem() {
-    let content = readProductFile();
     console.log("Введите id товара, который хотите удалить");
     let answer = await getInput();
-    const changeProduct = answer;
-    let findIndex = -1;
-    content.forEach((value, index) => {
-        if (value.id == changeProduct) {
-            findIndex = index;
-        }
-    });
-    if (findIndex == -1) {
-        console.log("Товар с данным id не найден");
+    if (get(answer)) {
+        remove(answer);
     } else {
-        content.splice(findIndex, 1);
-        saveProduct(content);
+        console.log("Товар с данным id не найден");
     }
 }
 
