@@ -1,0 +1,14 @@
+<%- include('../fragments/header'); %>
+<body>
+    <ul>
+        <% products.forEach(function(product) { %>
+        <li>
+            <span>ID товара: <%= product.id %></span>
+            <span>Название: <%= product.name %></span>
+            <span>Ссылка на картинку: <%= product.img %></span>
+            <span>Цена товара: <%= product.price %></span>
+            <a href="/edit?id=<%= product.id %>">Edit</a>
+        </li>
+        <% }); %>
+    </ul>
+</body>

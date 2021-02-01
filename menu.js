@@ -1,5 +1,5 @@
 const {firstItem, secondItem, thirdItem, fourthItem} = require('./menu.item');
-const {rl, getInput} = require('./file');
+const  {rl, getInput} = require('./util/console.utils');
 
 async function menu() {
     infLoop:
