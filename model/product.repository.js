@@ -1,13 +1,13 @@
 const {writeJson, readJson} = require('../util/file.utils');
 
-const fileName = 'products.json';
+const FILE_NAME = 'products.json';
 
 function saveProducts(content) {
-    writeJson(fileName, content);
+    writeJson(FILE_NAME, content);
 }
 
 function readProductFile() {
-    return readJson(fileName);
+    return readJson(FILE_NAME);
 }
 
 function getAll() {
@@ -40,16 +40,14 @@ function remove(id) {
     saveProducts(products);
 }
 
-function edit(product) {
+function edit(newProduct) {
     let products = getAll();
-    let findIndex = -1;
-    products.forEach((value, index) => {
-        let id = product.id;
-        if (value.id == id) {
-            findIndex = index;
+    products = products.map(function callback(product){
+        if (newProduct.id == product.id) {
+            return newProduct;
         }
-    });
-    products[findIndex] = product;
+        return product;
+    })
     saveProducts(products);
 }
 
