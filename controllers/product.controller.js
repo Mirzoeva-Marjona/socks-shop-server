@@ -14,16 +14,20 @@ router.get('/create', async (_request, response) => {
 });
 
 router.post('/create', async (_request, response) => {
-    let product = _request.body;
-    console.log(product);
+    const product = _request.body;
+    console.log(_request.body);
     add(product);
     response.redirect('/');
 });
 
 router.get('/edit', async (_request, response) => {
     const productId = _request.query.id;
-    let product = get(productId);
-    response.render("pages/edit.product.ejs", {product});
+    if (productId) {
+        let product = get(productId);
+        response.render("pages/edit.product.ejs", {product});
+    } else {
+        response.render("pages/page.not.found.ejs");
+    }
 });
 
 router.post('/edit', async (_request, response) => {

@@ -1,6 +1,6 @@
 <%- include('../fragments/header'); %>
 <body>
-<form action="/edit" method="post">
+<form name="product" action="/edit" method="post">
     <div class="form-group">
         <label for="id">Id товара</label>
         <input type="text" name="id" value="<%=product.id%>" readonly class="form-control" id="productName" placeholder="Название товара">
