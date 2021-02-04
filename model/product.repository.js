@@ -42,12 +42,12 @@ function remove(id) {
 
 function edit(newProduct) {
     let products = getAll();
-    products = products.map(function callback(product){
+    products = products.map((product) => {
         if (newProduct.id == product.id) {
             return newProduct;
         }
         return product;
-    })
+    });
     saveProducts(products);
 }
 
