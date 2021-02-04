@@ -1,5 +1,14 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script>
+        function removeProduct(id) {
+            console.log(id);
+            fetch('http://localhost:3000/api/products/'+ id, {method: 'DELETE'})
+                .then((response) => {
+                    document.location.reload();
+                })
+        }
+    </script>
 </head>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

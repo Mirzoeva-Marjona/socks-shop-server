@@ -7,7 +7,8 @@
             <span>Название: <%= product.name %></span>
             <span>Ссылка на картинку: <%= product.img %></span>
             <span>Цена товара: <%= product.price %></span>
-            <a href="/edit?id=<%= product.id %>">Edit</a>
+            <button type="button" class="btn btn-info" href="/edit?id=<%= product.id %>">Edit</button>
+            <button type="button" class="btn btn-secondary" onclick="removeProduct(<%= product.id %>)">Remove</button>
         </li>
         <% }); %>
     </ul>
