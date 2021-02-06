@@ -1,12 +1,15 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script>
+        const HOST = 'http://localhost:3000';
+
         function removeProduct(id) {
             console.log(id);
-            fetch('http://localhost:3000/api/products/'+ id, {method: 'DELETE'})
+            fetch(HOST + '/api/products/' + id, {method: 'DELETE'})
                 .then((response) => {
                     document.location.reload();
                 })
+                .catch((error) => console.error(`Deletion was interrupted by an error: ${error}`))
         }
     </script>
 </head>

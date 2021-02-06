@@ -1,7 +1,7 @@
 const {add, get, remove, edit, getAll} = require('./model/product.repository');
 const  {getInput} = require('./util/console.utils');
 
-async function firstItem() {
+function firstItem() {
     let products = getAll();
     products.forEach(element => console.log(`ID товара: ${element.id}, 
             Название товара: ${element.name},
