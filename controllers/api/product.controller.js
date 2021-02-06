@@ -35,6 +35,9 @@ router.patch('/:id', async (_request, response) => {
         if (newProduct.img) {
             product.img = newProduct.img;
         }
+        if (newProduct.sex) {
+            product.sex = newProduct.sex;
+        }
         if (newProduct.price) {
             product.price = newProduct.price;
         }
