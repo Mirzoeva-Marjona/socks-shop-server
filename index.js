@@ -1,6 +1,8 @@
+import './view/styles.css'
 const express = require('express');
 const path = require('path');
 const controllers = require('./controllers');
+// For webpack
 
 const {menu} = require('./menu');
 
