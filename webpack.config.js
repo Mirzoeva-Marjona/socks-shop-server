@@ -1,64 +1,146 @@
-const path = require('path')
-const webpack = require('webpack')
-const nodeExternals = require('webpack-node-externals')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const path = require("path");
+const webpack = require("webpack");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    mode: 'development',
-    devtool: 'eval-cheap-module-source-map',
     entry: {
-        server: './index.js',
+        bundle: path.resolve(__dirname, "./scripts/main.ts")
     },
+    devtool: 'inline-source-map',
     output: {
-        path: path.join(__dirname, 'public'),
-        publicPath: '/',
-        filename: 'main.js'
+        publicPath: "/",
+        path: path.resolve(__dirname, "public"),
+        filename: '[name].js'
     },
-    target: 'node',
-    node: {
-        __dirname: false,
-        __filename: false,
-    },
-    externals: [nodeExternals()],
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
+                test: /\.ts?$/,
+                use: "ts-loader",
+                exclude: /node_modules/
             },
             {
-                test: /\.ejs$/,
+                test: /\.(png|jpg|jpeg|svg)/,
                 use: [
-                    // 'html-loader',
                     {
-                        loader: "ejs-webpack-loader",
+                        loader: 'file-loader',
                         options: {
-                            htmlmin: true
+                            name: '[name].[ext]',
+                            outputPath: 'images/'
+                        }
+                    }
+                ]
+
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/'
                         }
                     }
                 ]
             },
             {
-                test: /\.css$/,
+                test: /\.less$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader'
+                    {
+                        loader: "css-loader",
+                    },
+                    {
+                        loader: "less-loader",
+                    },
                 ],
             }
         ]
     },
+    resolve: {
+        extensions: [".ts", ".js", ".less"]
+    },
     plugins: [
-        new MiniCssExtractPlugin({filename: 'style.css'}),
+        new webpack.ProgressPlugin(),
         new CleanWebpackPlugin(),
-        new HtmlWebPackPlugin({
-            filename: 'index.html',
-            template: './view/pages/index.ejs',
+        new MiniCssExtractPlugin({
+            filename: "base.css"
         })
-    ]
-}
+    ],
+
+    watchOptions: {
+        ignored: 'node_modules/**'
+    },
+};
+
+
+
+
+
+// const path = require('path')
+// const webpack = require('webpack')
+// const nodeExternals = require('webpack-node-externals')
+// const HtmlWebPackPlugin = require("html-webpack-plugin")
+// const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//
+// module.exports = {
+//     mode: 'development',
+//     devtool: 'inline-source-map',
+//     entry: {
+//         server: './index.js',
+//     },
+//     output: {
+//         path: path.join(__dirname, 'public'),
+//         publicPath: '/',
+//         filename: 'main.js'
+//     },
+//     target: 'node',
+//     node: {
+//         __dirname: false,
+//         __filename: false,
+//     },
+//     externals: [nodeExternals()],
+//     module: {
+//         rules: [
+//             {
+//                 test: /\.js$/,
+//                 exclude: /node_modules/,
+//                 use: {
+//                     loader: "babel-loader"
+//                 }
+//             },
+//             {
+//                 test: /\.ejs$/,
+//                 use: [
+//                     // 'html-loader',
+//                     {
+//                         loader: "ejs-webpack-loader",
+//                         options: {
+//                             htmlmin: true
+//                         }
+//                     }
+//                 ]
+//             },
+//             {
+//                 test: /\.css$/,
+//                 use: [
+//                     MiniCssExtractPlugin.loader,
+//                     'css-loader',
+//                     'postcss-loader'
+//                 ],
+//             }
+//         ]
+//     },
+//     plugins: [
+//         new MiniCssExtractPlugin({filename: 'style.css'}),
+//         new CleanWebpackPlugin(),
+//         // new HtmlWebPackPlugin({
+//         //     filename: 'index.html',
+//         //     inject: true,
+//         //     template: './view/pages/index.ejs',
+//         // })
+//     ]
+// }

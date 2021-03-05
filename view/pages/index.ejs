@@ -1,4 +1,5 @@
-<% include ../fragments/header %>
+<%- include ("../fragments/header") %>
+
 <body>
     <ul>
         <% (typeof products != 'undefined' ? products : []).forEach(function(product) { %>

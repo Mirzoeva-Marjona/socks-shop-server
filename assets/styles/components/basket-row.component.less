@@ -1,0 +1,36 @@
+.product-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+
+  &__image {
+    height: 80px;
+    width: 80px;
+  }
+
+  &_font {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    color: #4F4F4F;
+  }
+
+  &__remove-button {
+    right: 20px;
+    cursor: pointer;
+    color: #4F4F4F;
+    border-radius: 5px;
+
+    &:hover {
+      background: #c9c5c5;
+    }
+  }
+
+  @media (max-width: 639px) {
+
+  }
+}

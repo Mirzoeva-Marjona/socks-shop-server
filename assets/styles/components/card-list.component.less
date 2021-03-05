@@ -1,0 +1,36 @@
+.product-cards-container {
+  display: grid;
+  padding: 3% 0 5% 0;
+  grid-column-gap: 3%;
+
+  &._frame {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 639px) {
+    & {
+      grid-template-columns: 1fr;
+      padding: 5px;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    & {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    & {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    & {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+}

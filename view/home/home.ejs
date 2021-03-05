@@ -1,0 +1,47 @@
+<%- include ("header.ejs") %>
+<main class="main">
+    <figure class="banner _frame">
+        <div class="banner__img">
+    </figure>
+    <section class="menu _gray">
+        <input id="menu__burger-checkbox" type="checkbox"/>
+        <label class="menu__burger-button _label" for="menu__burger-checkbox">
+            <span></span>
+        </label>
+        <div class="button-holder  _frame">
+            <div class="menu-button _center-position">
+                <span class="menu-button__title">Мужские</span>
+            </div>
+            <div class="menu-button _center-position">
+                <span class="menu-button__title">Женские</span>
+            </div>
+            <div class="menu-button _center-position">
+                <span class="menu-button__title">Детские</span>
+            </div>
+            <div class="menu-button _center-position">
+                <span class="menu-button__title">Распродажа</span>
+            </div>
+        </div>
+    </section>
+    <section class="product-cards-container _frame js-product-cards-container">
+    </section>
+    <div class="modal js-hidden js-notification">
+        <div class="notification-fragment _text">
+            <span>Выберите размер</span>
+        </div>
+    </div>
+    <div class="modal js-hidden js-loader">
+        <div class="notification-fragment _text">
+            <span>Загрузка...</span>
+        </div>
+    </div>
+    <div class="overlay js-overlay js-hidden"></div>
+</main>
+<%- include ("footer.ejs") %>
+</body>
+<%- include ("product.card.ejs") %>
+<%- include ("basket.component.ejs") %>
+<%- include ("product.item.row.ejs") %>
+<%- include ("counter.ejs") %>
+<script src="/bundle.js"></script>
+</html>
