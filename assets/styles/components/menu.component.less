@@ -1,0 +1,144 @@
+.menu {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+
+  &._gray {
+    background: #C4C4C4;
+  }
+
+  &__burger-button {
+    cursor: pointer;
+    visibility: hidden;
+
+    &._label {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 26px;
+      height: 26px;
+      z-index: 1;
+    }
+
+    & > span,
+    & > span::before,
+    & > span::after {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #616161;
+    }
+
+    & > span::before {
+      content: '';
+      top: -8px;
+    }
+
+    & > span::after {
+      content: '';
+      top: 8px;
+    }
+
+    & > span,
+    & > span::before,
+    & > span::after {
+      transition-duration: .40s;
+    }
+  }
+
+  #menu__burger-checkbox {
+    display: none;
+  }
+
+  #menu__burger-checkbox:checked ~ .button-holder {
+    display: flex;
+  }
+
+  #menu__burger-checkbox:checked ~ .menu__burger-button > span {
+    transform: rotate(45deg);
+  }
+
+  #menu__burger-checkbox:checked ~ .menu__burger-button > span::before {
+    top: 0;
+    transform: rotate(0);
+  }
+
+  #menu__burger-checkbox:checked ~ .menu__burger-button > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+
+  .button-holder {
+    display: flex;
+    flex-wrap: wrap;
+
+    &._frame {
+      margin: 0 10% 0 10%;
+    }
+  }
+
+  .menu-button {
+    color: #4F4F4F;
+
+    &:hover {
+      background: #4F4F4F;
+      color: #BDBDBD;
+    }
+
+    &:active {
+      background: #6c6868;
+      color: #BDBDBD;
+    }
+
+    &._center-position {
+      text-align: center;
+    }
+
+    &__title {
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 36px;
+      line-height: 70px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .menu-button {
+      flex: 0 0 100%;
+    }
+
+    .button-holder {
+      display: none;
+    }
+
+    .menu__burger-button {
+      visibility: visible;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .menu-button {
+      flex: 0 0 50%;
+    }
+
+    .button-holder._frame {
+      margin: 0;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    .menu-button {
+      flex: 0 0 50%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .menu-button {
+      flex: 0 0 25%;
+    }
+  }
+}

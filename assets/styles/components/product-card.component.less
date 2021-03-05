@@ -1,0 +1,93 @@
+.product-card {
+  display: grid;
+  border-spacing: 0px 30px;
+  grid-template-areas:
+        "item-image item-image"
+        "product-card__name product-card__name"
+        "product-card__price product-card__price"
+        "socks-size product-card__button-in-basket";
+
+  &._border {
+    padding: 10px;
+    border-radius: 7px;
+
+    &:hover {
+      box-shadow: 0 0 15px rgba(7, 6, 6, 0.5);
+    }
+  }
+
+  .item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: none;
+    grid-area: item-image;
+
+    &__photo {
+      width: 100%;
+    }
+  }
+
+  &__name {
+    grid-area: product-card__name;
+    text-align: center;
+  }
+
+  ._card-font {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #4F4F4F;
+  }
+
+  &__price {
+    height: 36px;
+    text-align: center;
+    background: #C4C4C4;
+
+    grid-area: product-card__price;
+  }
+
+  &__socks-size {
+    grid-area: socks-size;
+
+    &._option-text {
+      width: 100%;
+
+      font-size: 20px;
+      line-height: 100%;
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+      text-align: center;
+      color: #4F4F4F;
+    }
+  }
+
+  &__in-basket-button {
+    background: #EB5757;
+    color: #4F4F4F;
+    border-radius: 3px;
+    text-align: center;
+
+    grid-area: product-card__button-in-basket;
+
+    &:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+    }
+
+    &:active {
+      color: #4F4F4F;
+    }
+
+    &._font {
+      font-size: 22px;
+      line-height: 28px;
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+    }
+  }
+}
